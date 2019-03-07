@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Electric Dreams</title>
+
+	<style type="text/css">
+		/*style the computer text, input, and button*/
+
+		body {
+			font-family: monospace;
+			font-size: 2em;
+			background-image: url("stage.jpg");
+			background-repeat: no-repeat;
+			background-size: auto;
+		}
+
+		button {
+			display: none;
+		}
+
+		input {
+			font-size: 1em;
+			font-family: monospace;
+		}
+
+		.red {
+			color: red;
+		}
+
+		.robot {
+			margin-bottom: 50px;
+		}
+
+		/*.pink {
+			color: #0D004D;
+		}*/
+
+		h1 {
+			color: white;
+			font-size: 5em;
+			/*text-align: center;*/
+		}
+
+		p {
+			color: white;
+			font-size: 2em;
+		}
+
+		main {
+			width: 75%;
+			margin: 1em auto;
+			padding: 1em 1em 2em 1em;
+			text-align: center;
+		}
+
+		@font-face {
+			font-family: "CFIRobotRegular";
+			src: url("css/fonts/Harabara.woff") format("woff"),
+			url("css/fonts/Harabara.otf") format("opentype"),
+			url("css/fonts/Harabara.svg#filename") format("svg");
+		}
+	</style>
+</head>
+
+<body>
+
+	<main>
+		<h1>Electric Dreams</h1>
+		<img class="robot" src="ElectricDream1.gif" alt="robot">
+		<p id="computer" class="pink">Hi there beautiful, do you like movies?</p>
+		<input id="human" type="text" placeholder="Type your response...">
+
+		<button>Enter</button>
+
+	</main>
+
+	<script type="text/javascript">
+		const computer = document.querySelector('#computer')
+		const human = document.getElementById('human')
+		const button = document.querySelector('button')
+
+		let computerMsg = ""
+		let humanMsg = ""
+
+		button.addEventListener('click', clickHandler)
+
+		function clickHandler() {
+			// computer.innerHTML = human.value
+			playGame()
+		}
+		window.addEventListener("keydown", keydownHandler, true);
+
+		function keydownHandler(event) {
+			if (event.keyCode == 13 || event.keyCode == 10) {
+				// console.log("Enter key pressed");
+				// computer.innerHTML = human.value
+				playGame()
+
+			}
+		}
+		let randomResponses = [
+			"Who do you think you are?",
+			"What is wrong with you?",
+			"Well, that wasn't very smart was it.",
+			"Were you born in a barn?",
+			"You are the most beautiful thing in the world.",
+			"Smile, you're on reality T.V."
+
+		]
+
+		function playGame() {
+			//do something for real
+			humanMsg = (human.value).toLowerCase()
+
+			if (humanMsg.indexOf("tired") !== -1) {
+				computerMsg = "You better get some sleep."
+			} else if (humanMsg.indexOf("sleepy") !== -1) {
+				computerMsg = "You must know Snow White."
+			} else if (humanMsg.indexOf("exhausted") !== -1) {
+				ccomputerMsg = "You should get a bite to eat."
+			} else {
+				genericResponse();
+
+			}
+			human.value = ""
+			computer.innerHTML = computerMsg
+		}
+
+
+		function genericResponse() {
+			if (randomResponses.length > 0) {
+				const ranNum = Math.floor(Math.random() * randomResponses.length)
+				// console.log();
+				computer.innerHTML = randomResponses[ranNum]
+				randomResponses.splice(ranNum, 1)
+			}
+			endGame();
+		}
+
+		function endGame() {
+			//go someplace else
+			location.assign("https://giphy.com/gifs/desiigner-9tZebYjE6ZhyfVpEac")
+
+		}
+	</script>
+</body>
+
+</html>
