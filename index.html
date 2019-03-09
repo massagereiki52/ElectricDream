@@ -1,74 +1,83 @@
 <!DOCTYPE html>
 <html>
+<!--Danelle VanVleet -->
+<!-- Electric Dream -->
+<!-- 3/8/2019 -->
 
 <head>
-	<title>Electric Dreams</title>
+	<title>Electric Dream</title>
+	<meta charset="utf-8">
+</head>
 
-	<style type="text/css">
-		/*style the computer text, input, and button*/
 
-		body {
-			font-family: monospace;
-			font-size: 2em;
-			background-image: url("stage.jpg");
-			background-repeat: no-repeat;
-			background-size: auto;
-		}
+<style type="text/css">
+	/*style the computer text, input, and button*/
 
-		button {
-			display: none;
-		}
+	body {
+		font-family: monospace;
+		font-size: 2em;
+		background-image: url("stage.jpg");
+		background-repeat: no-repeat;
+		background-size: auto;
+	}
 
-		input {
-			font-size: 1em;
-			font-family: monospace;
-		}
+	button {
+		display: none;
+	}
 
-		.red {
-			color: red;
-		}
+	input {
+		font-size: 1em;
+		font-family: monospace;
+	}
 
-		.robot {
-			margin-bottom: 50px;
-		}
+	.red {
+		color: red;
+	}
 
-		/*.pink {
+	.robot {
+		margin-bottom: 50px;
+
+	}
+
+	/*.pink {
 			color: #0D004D;
 		}*/
 
-		h1 {
-			color: white;
-			font-size: 5em;
-			/*text-align: center;*/
-		}
+	h1 {
+		font-family: 'Srisakdi', cursive;
+		color: white;
+		font-size: 6em;
+		padding-top: 2em;
+		padding-light: 10px;
+		/*text-align: center;*/
+	}
 
-		p {
-			color: white;
-			font-size: 2em;
-		}
+	p {
+		color: white;
+		font-size: 2em;
+		font-family: 'Poppins', sans-serif;
+	}
 
-		main {
-			width: 75%;
-			margin: 1em auto;
-			padding: 1em 1em 2em 1em;
-			text-align: center;
-		}
+	main {
+		width: 75%;
+		margin: 1em auto;
+		padding: 1em 0em;
+		text-align: center;
+	}
 
-		@font-face {
-			font-family: "CFIRobotRegular";
-			src: url("css/fonts/Harabara.woff") format("woff"),
-			url("css/fonts/Harabara.otf") format("opentype"),
-			url("css/fonts/Harabara.svg#filename") format("svg");
-		}
-	</style>
-</head>
+	.displayNone {
+		display: none;
+	}
+</style>
+
 
 <body>
-
+	<link href="https://fonts.googleapis.com/css?family=Srisakdi:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins|Srisakdi:700" rel="stylesheet">
 	<main>
 		<h1>Electric Dreams</h1>
 		<img class="robot" src="ElectricDream1.gif" alt="robot">
-		<p id="computer" class="pink">Hi there beautiful, do you like movies?</p>
+		<p id="computer" class="pink">You are so beautiful.</p>
 		<input id="human" type="text" placeholder="Type your response...">
 
 		<button>Enter</button>
@@ -82,11 +91,11 @@
 
 		let computerMsg = ""
 		let humanMsg = ""
+		let questionTrack = "start"
 
 		button.addEventListener('click', clickHandler)
 
 		function clickHandler() {
-			// computer.innerHTML = human.value
 			playGame()
 		}
 		window.addEventListener("keydown", keydownHandler, true);
@@ -100,49 +109,489 @@
 			}
 		}
 		let randomResponses = [
-			"Who do you think you are?",
-			"What is wrong with you?",
-			"Well, that wasn't very smart was it.",
-			"Were you born in a barn?",
-			"You are the most beautiful thing in the world.",
-			"Smile, you're on reality T.V."
+			"How old are you? Maybe you should act your age.",
+			"why are you such a cry baby? ",
+			"Don't worry and don't be afraid. What are you afraid of?",
+			"Honey, don't you cry over the things that could have been. ",
+			"Why do you live like you belong in a barn?"
 
 		]
-
+		//master function
 		function playGame() {
-			//do something for real
 			humanMsg = (human.value).toLowerCase()
 
-			if (humanMsg.indexOf("tired") !== -1) {
-				computerMsg = "You better get some sleep."
-			} else if (humanMsg.indexOf("sleepy") !== -1) {
-				computerMsg = "You must know Snow White."
-			} else if (humanMsg.indexOf("exhausted") !== -1) {
-				ccomputerMsg = "You should get a bite to eat."
-			} else {
-				genericResponse();
+			//do something for real
 
+			if (questionTrack == "start") {
+				startEval()
+			} else if (questionTrack == "movie") {
+				movieEval()
+			} else if (questionTrack == "disney") {
+				disneyEval()
+			} else if (questionTrack == "ppStuff") {
+				ppStuffEval()
+			} else if (questionTrack == "reason") {
+				reasonEval()
+			} else if (questionTrack == "fly") {
+				flyEval()
+			} else if (questionTrack == "dress") {
+				dressEval()
+			} else if (questionTrack == "why") {
+				whyEval()
+			} else if (questionTrack == "imagination") {
+				imaginationEval()
+			} else if (questionTrack == "zoom") {
+				zoomEval()
+			} else if (questionTrack == "plane") {
+				planeEval()
+			} else if (questionTrack == "belle") {
+				belleEval()
+			} else if (questionTrack == "outside") {
+				outsideEval()
+			} else if (questionTrack == "sad") {
+				sadEval()
+			} else if (questionTrack == "dumboStuff") {
+				dumboStuffEval()
+			} else if (questionTrack == "baby") {
+				babyEval()
+			} else if (questionTrack == "disneytv") {
+				disneyTvEval()
+			} else if (questionTrack == "tv") {
+				tvEval()
+			} else if (questionTrack == "show") {
+				showEval()
+			} else if (questionTrack == "choices") {
+				choicesEval()
+			} else if (questionTrack == "book") {
+				bookEval()
+			} else if (questionTrack == "game") {
+				gameEval()
+			} else if (questionTrack == "murder") {
+				murderEval()
+			} else if (questionTrack == "bachelor") {
+				bachelorEval()
+			} else if (questionTrack == "xylidin") {
+				xylidinEval()
+			} else if (questionTrack == "scrabble") {
+				scrabbleEval()
+			} else if (questionTrack == "cards") {
+				cardsEval()
+			} else if (questionTrack == "scifi") {
+				scifiEval()
+			} else if (questionTrack == "nap") {
+				napEval()
 			}
-			human.value = ""
+			// else if (questionTrack == "tvBradyBunch") {
+			// // 	ppStuffEval()
+			// }
+			else {
+				genericResponse()
+			} //end if
 			computer.innerHTML = computerMsg
-		}
+			human.value = ""
+		} //end playGame
+
+
+
+		function startEval() {
+			if (humanMsg.indexOf("thank") !== -1) {
+				computerMsg = "Would you like to go to a movie?"
+				questionTrack = "movie"
+
+			} else {
+				genericResponse()
+			}
+		} //end start
+
+		function movieEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Would you like to go to dumbo or peterpan?"
+				questionTrack = "disney"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Do you want to watch tv?"
+				questionTrack = "tv"
+
+			} else {
+				genericResponse()
+			}
+		} //end movieEval
+
+		//Begin TV
+		function tvEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Should we watch Murder She Wrote or The Bachelor?"
+				questionTrack = "show"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Do you want to go and play a Game instead?"
+				questionTrack = "game"
+
+			} else {
+				genericResponse()
+			}
+		} //end tvEval
+		//Begin game
+		function gameEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Do you want to play scrabble or cards against humanity?"
+				questionTrack = "choices"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Would your rather read a book together?"
+				questionTrack = "book"
+
+			} else {
+				genericResponse()
+			}
+		} //end movieEval
+		function choicesEval() {
+			if (humanMsg.indexOf("scrabble") !== -1) {
+				computerMsg = "Are you good with words?"
+				questionTrack = "scrabble"
+			} else if (humanMsg.indexOf("cards") !== -1) {
+				computerMsg = "have you ever played it before?"
+				questionTrack = "cards"
+			} else {
+				genericResponse()
+			}
+		} //end scrabbleEval
+
+		function bookEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Are you more of a Sci-Fi person or a Romance?"
+				questionTrack = "scifi"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Would you rather take a nap?"
+				questionTrack = "nap"
+			} else {
+				genericResponse()
+			}
+		} //end movieEval
+		function scrabbleEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Do you know what Xylidin means?"
+				questionTrack = "xylidin"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Have you ever played Boggle?"
+				questionTrack = "boggle"
+			} else {
+				genericResponse()
+			}
+		} //end movieEval
+		function xylidinEval() {
+			if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Can you tell me what it means then?"
+
+			} else {
+				genericResponse()
+			}
+		} //end movieEval
+		function boggleEval() {
+			if (humanMsg.indexOf("Yes") !== -1) {
+				computerMsg = "Did you like it?"
+
+			} else {
+				genericResponse()
+			}
+		} //end movieEval
+		function scifiEval() {
+			if (humanMsg.indexOf("romance") !== -1) {
+				computerMsg = "What do you like about romance movies?"
+
+			} else {
+				genericResponse()
+			}
+		} //end movieEval
+		function napEval() {
+			if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Do you remember when you were a kid and you fought to not have to take a nap?"
+
+			} else {
+				genericResponse()
+			}
+		} //end movieEval
+		//End Game
+		//Begin Show
+		function showEval() {
+			if (humanMsg.indexOf("murder") !== -1) {
+				computerMsg = "Since you said Murder She Wrote, Did you know that Angela Landsburry, the Lead of the show was the voice of Mrs. Pots in Beauty and The Beast??"
+				questionTrack = "murder"
+
+			} else if (humanMsg.indexOf("bach") !== -1) {
+				computerMsg = "How do you feel this season is going?"
+				questionTrack = "bachelor"
+
+			} else {
+				genericResponse()
+			}
+		} //end tvEval
+		function murderEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Do you think she has a good sining voice?"
+
+			} else {
+				genericResponse()
+			}
+		} //end murderEval
+
+		function bachelorEval() {
+			if (humanMsg.indexOf("good") !== -1) {
+				computerMsg = "Do you like the Bachelor, Bachelorette or BIP the best?"
+
+			} else {
+				genericResponse()
+			}
+		} //end tvEval
+		//Begin Show
+		//End TV
+		//Begin movieStuff
+		function disneyEval() {
+			if (humanMsg.indexOf("peter") !== -1) {
+				computerMsg = "Would you like to dress up like Tinker Bell or Peter?"
+				questionTrack = "ppStuff"
+
+			} else if (humanMsg.indexOf("dumbo") !== -1) {
+				computerMsg = "Have you ever seen the origional dumbo?"
+				questionTrack = "dumboStuff"
+
+			} else {
+				genericResponse()
+			}
+		} //end disney
+		//Begin Dumbo
+		function dumboStuffEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Do you know the song Baby Mine?"
+				questionTrack = "baby"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Dumbo is only the best Disney movie of all time. Are you old enough to remember when they had weekly Disney movies on T.V.?"
+				questionTrack = "disneytv"
+
+			} else {
+				genericResponse()
+			}
+		} //end dumnboStuff
+
+		function babyEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Are you looking forward to the release of the live action Dumbo?"
+				questionTrack = "live"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Do you know the song Bear Necessities?"
+				questionTrack = "bear"
+
+			} else {
+				genericResponse()
+			}
+		} //end babyStuff
+		function liveEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Have you seen any of the other live action Disney movies, if so which ones?"
+				// questionTrack = "live"
+
+			} else {
+				genericResponse()
+			}
+		} //end babyStuff
+		function bearEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "What movies is the song from?"
+				// questionTrack = "live"
+
+			} else {
+				genericResponse()
+			}
+		} //end babyStuff
+
+		function disneyTvEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Were you born in the 80s?"
+				questionTrack = "80s"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Then you missed out. Did you watch t.v. when you were young?"
+				questionTrack = "tv"
+
+			} else {
+				genericResponse()
+			}
+		} //end disneyTvStuff
+		//end Dumbo
+
+		//Begin ppStuff
+		function ppStuffEval() {
+			if (humanMsg.indexOf("tink") !== -1) {
+				computerMsg = "Is she your favorite?"
+				questionTrack = "reason"
+
+			} else if (humanMsg.indexOf("peter") !== -1) {
+				computerMsg = "Did you wish you could fly as a kid?"
+				questionTrack = "fly"
+
+			} else {
+				genericResponse()
+			}
+		} //endppStuff
+
+		function reasonEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Did you ever play dress up as a child?"
+
+				questionTrack = "dress"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Did you ever use your imagination?"
+				questionTrack = "imagination"
+
+			} else {
+				genericResponse()
+			}
+		} //endreasonEval
+
+		function dressEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Did you dress up like Tinker Bell as a kid?"
+				questionTrack = "why"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Did you dress up like Belle from Beauty and The Beast?"
+				questionTrack = "belle"
+
+			} else {
+				genericResponse()
+			}
+		} //end dressEval
+
+
+		function imaginationEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Well good for you. Does that mean you played outside when you were a kid?"
+				questionTrack = "outside"
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "I'm sorry that you had to grow up too fast. Did that make you sad?"
+				questionTrack = "sad"
+			} else {
+				genericResponse()
+			}
+		} //end imaginationEval
+
+
+		function outsideEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "What was your favorite think to do outside?"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Were you born around the early 2000's?"
+
+			} else {
+				genericResponse()
+			}
+		} //end outsideEval
+
+
+		function sadEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "What can I do to make you happy?"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "It would have made me sad. I loved using my imagination. What did you do instead?"
+
+			} else {
+				genericResponse()
+			}
+		} //end imaginationEval
+
+
+		function whyEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "What was your favorite part about playing dressup?"
+
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "If you didn't dress up like Tink then who did you dress up as?"
+
+
+			} else {
+				genericResponse()
+			}
+		} //end whyEval
+
+
+		function belleEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "I loved Beauty and The Beast. What was your favorite part of the movie?"
+
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Did you dress up like anyone else when you were a kid?"
+
+			} else {
+				genericResponse()
+			}
+		} //end whyEval
+
+
+		function flyEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Did you wish you could fly like Peter Pan?"
+				questionTrack = "zoom"
+
+			} else if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Did you build toy airplanes?"
+				questionTrack = "plane"
+
+			} else {
+				genericResponse()
+			}
+		} //end flyEval
+
+
+		function planeEval() {
+			if (humanMsg.indexOf("yes") !== -1) {
+				computerMsg = "Who did you build them with?"
+
+			} else {
+				genericResponse()
+			}
+		} //end planeEval
+
+
+		function zoomEval() {
+
+			if (humanMsg.indexOf("no") !== -1) {
+				computerMsg = "Were you more of a tinker bell?"
+
+			} else {
+				genericResponse()
+			}
+		} //end zoomEval
+
+		//end Peter Pan
+		// end Movie
 
 
 		function genericResponse() {
 			if (randomResponses.length > 0) {
 				const ranNum = Math.floor(Math.random() * randomResponses.length)
 				// console.log();
-				computer.innerHTML = randomResponses[ranNum]
+				computerMsg = randomResponses[ranNum]
 				randomResponses.splice(ranNum, 1)
+			} else {
+				// cumputerMsg = "I am done with you, human."
+				// human.className = "displayNone"
+				// setTimeout(endGame, 2000)
+				endGame();
+			} //end genericResponse
+
+			function endGame() {
+				//go someplace else
+				location.assign("https://giphy.com/gifs/desiigner-9tZebYjE6ZhyfVpEac")
+
 			}
-			endGame();
-		}
-
-		function endGame() {
-			//go someplace else
-			location.assign("https://giphy.com/gifs/desiigner-9tZebYjE6ZhyfVpEac")
-
-		}
+		} //end endGame
 	</script>
 </body>
 
