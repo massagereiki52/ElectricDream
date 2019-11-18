@@ -10,68 +10,15 @@
 	<meta charset="utf-8">
 </head>
 
-
-<style type="text/css">
-	/*style the computer text, input, and button*/
-
-	body {
-		font-family: monospace;
-		font-size: 2em;
-		background-image: url("stage.jpg");
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-/*ADDING SOMETHING SO THAT I CAN RESUBMIT*/
-	button {
-		display: none;
-	}
-
-	input {
-		font-size: 1.5em;
-		font-family: 'Poppins', sans-serif;
-	}
-
-
-
-	.robot {
-		margin-bottom: 50px;
-
-	}
-
-
-	h1 {
-		font-family: 'Srisakdi', cursive;
-		color: white;
-		font-size: 5em;
-		/*padding-left: 5em;
-		padding-bottom: 1em;*/
-	}
-
-	p {
-		color: white;
-		font-size: 1em;
-		font-family: 'Poppins', sans-serif;
-	}
-
-	main {
-		width: 75%;
-		margin: 1em auto;
-		padding: 1em 0em;
-		text-align: center;
-	}
-
-	.displayNone {
-		display: none;
-	}
-</style>
-
-
 <body>
 	<link href="https://fonts.googleapis.com/css?family=Srisakdi:400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins|Srisakdi:700" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
 	<main>
-		<h1>Electric Dreams</h1>
-		<img class="robot" src="ElectricDream1.gif" alt="robot">
+		<div class="robot">
+			<h1>Electric Dreams</h1>
+			<img src="ElectricDream1.gif" alt="robot">
+		</div>
 		<p id="computer" class="pink">You are so beautiful.</p>
 		<input id="human" type="text" placeholder="Type your response...">
 
