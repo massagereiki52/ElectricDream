@@ -59,7 +59,7 @@ main {
     border-top: 10rem solid #D291BC;
   }
   h1 {
-    font-size: 6rem;
+    font-size: 4vmax;
   }
   .robot {
     margin-bottom: 2rem;
@@ -74,7 +74,7 @@ main {
     width: 1200px;
   }
   h1 {
-    font-size: 8rem;
+    font-size: 8vmax;
   }
   .robot {
     margin-bottom: 2rem;
